@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Muon\ApiSchemaExport\Api\ModuleSelectorInterface"
+                type="Muon\ApiSchemaExport\Model\ModuleSelector"/>
+    <preference for="Muon\ApiSchemaExport\Api\SurfaceResolverInterface"
+                type="Muon\ApiSchemaExport\Model\SurfaceResolver"/>
+    <preference for="Muon\ApiSchemaExport\Api\RendererPoolInterface"
+                type="Muon\ApiSchemaExport\Model\RendererPool"/>
+    <preference for="Muon\ApiSchemaExport\Api\ExportManagerInterface"
+                type="Muon\ApiSchemaExport\Model\ExportManager"/>
+    <preference for="Muon\ApiSchemaExport\Api\Data\OperationInterface"
+                type="Muon\ApiSchemaExport\Model\Data\Operation"/>
+    <preference for="Muon\ApiSchemaExport\Api\Data\ApiSurfaceInterface"
+                type="Muon\ApiSchemaExport\Model\Data\ApiSurface"/>
+    <preference for="Muon\ApiSchemaExport\Api\Data\RenderContextInterface"
+                type="Muon\ApiSchemaExport\Model\Data\RenderContext"/>
+    <preference for="Muon\ApiSchemaExport\Api\Data\ExportRequestInterface"
+                type="Muon\ApiSchemaExport\Model\Data\ExportRequest"/>
+    <preference for="Muon\ApiSchemaExport\Api\Data\ExportResultInterface"
+                type="Muon\ApiSchemaExport\Model\Data\ExportResult"/>
+
+    <!-- Console command registration. -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="muon_api_schema_export" xsi:type="object">
+                    Muon\ApiSchemaExport\Console\Command\ExportCommand
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- The renderer registry. A new output format is one class plus one node here. -->
+    <type name="Muon\ApiSchemaExport\Model\RendererPool">
+        <arguments>
+            <argument name="renderers" xsi:type="array">
+                <item name="http" xsi:type="object">Muon\ApiSchemaExport\Model\Renderer\HttpRenderer</item>
+                <item name="postman" xsi:type="object">Muon\ApiSchemaExport\Model\Renderer\PostmanRenderer</item>
+                <item name="openapi" xsi:type="object">Muon\ApiSchemaExport\Model\Renderer\OpenApiRenderer</item>
+                <item name="swagger" xsi:type="object">Muon\ApiSchemaExport\Model\Renderer\SwaggerRenderer</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
