@@ -30,16 +30,10 @@ class SurfaceResolverTest extends TestCase
     /**
      * @var MockObject&EventManagerInterface
      */
-    /**
-     * @var MockObject
-     */
     private MockObject $eventManager;
 
     /**
      * @var MockObject&OperationBuilder
-     */
-    /**
-     * @var MockObject
      */
     private MockObject $operationBuilder;
 

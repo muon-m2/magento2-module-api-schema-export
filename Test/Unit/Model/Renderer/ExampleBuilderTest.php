@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Muon\ApiSchemaExport\Test\Unit\Model\Renderer;
 
 use Muon\ApiSchemaExport\Model\Renderer\ExampleBuilder;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -38,6 +39,35 @@ class ExampleBuilderTest extends TestCase
         self::assertSame(0, $this->exampleBuilder->forType('int', []));
         self::assertSame(0.0, $this->exampleBuilder->forType('float', []));
         self::assertTrue($this->exampleBuilder->forType('bool', []));
+    }
+
+    /**
+     * Untyped values are represented as null, not as an empty object.
+     *
+     * Magento spells this type "anyType". The lookup lower-cases the incoming name, so a
+     * capitalised key in the scalar map silently never matched and anyType fell through to the
+     * complex-type branch, yielding an empty object where a null was intended.
+     *
+     * @param string $type
+     * @dataProvider untypedTypeProvider
+     */
+    #[DataProvider('untypedTypeProvider')]
+    public function testUntypedValuesAreNull(string $type): void
+    {
+        self::assertNull($this->exampleBuilder->forType($type, []));
+    }
+
+    /**
+     * @return array<string,array{0:string}>
+     */
+    public static function untypedTypeProvider(): array
+    {
+        return [
+            'mixed' => ['mixed'],
+            'anyType as Magento spells it' => ['anyType'],
+            'anytype lower-cased' => ['anytype'],
+            'MIXED upper-cased' => ['MIXED'],
+        ];
     }
 
     /**

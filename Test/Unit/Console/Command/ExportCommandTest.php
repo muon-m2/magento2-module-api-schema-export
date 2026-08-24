@@ -31,30 +31,18 @@ class ExportCommandTest extends TestCase
     /**
      * @var MockObject&ExportManagerInterface
      */
-    /**
-     * @var MockObject
-     */
     private MockObject $exportManager;
 
     /**
      * @var MockObject&FileWriter
-     */
-    /**
-     * @var MockObject
      */
     private MockObject $fileWriter;
 
     /**
      * @var Stub&RendererPoolInterface
      */
-    /**
-     * @var Stub
-     */
     private Stub $rendererPool;
 
-    /**
-     * @var ExportCommand
-     */
     /**
      * @var ExportCommand
      */

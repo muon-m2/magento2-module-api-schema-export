@@ -30,6 +30,9 @@ class ExampleBuilder
     /**
      * Example values for the scalar types Magento's reflection reports.
      *
+     * Keys are lower-case because the lookup lower-cases the incoming type name: Magento spells
+     * this type "anyType", so a capitalised key here would never match.
+     *
      * @var array<string,mixed>
      */
     private const SCALAR_EXAMPLES = [
@@ -41,7 +44,7 @@ class ExampleBuilder
         'bool' => true,
         'boolean' => true,
         'mixed' => null,
-        'anyType' => null,
+        'anytype' => null,
     ];
 
     /**

@@ -68,7 +68,7 @@ For the admin screen, install `Muon_ApiSchemaExportAdminUi` and use **System →
 ## Generated artifacts carry no credentials
 
 Every format emits authentication as a placeholder — `{{token}}` in the `.http` and Postman files,
-a `bearerAuth` security scheme in OpenAPI and Swagger. The companion `http-client.env.json` and
+a `bearerAuth` security scheme in OpenAPI and Swagger. The companion `<name>.env.json` and
 Postman environment ship `token = ""`. The files are meant to be shared, so a renderer that
 embedded a live token would turn each one into a credential leak; unit tests assert the property
 per renderer on every run.

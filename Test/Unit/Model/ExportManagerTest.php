@@ -35,16 +35,10 @@ class ExportManagerTest extends TestCase
     /**
      * @var MockObject&SurfaceResolverInterface
      */
-    /**
-     * @var MockObject
-     */
     private MockObject $surfaceResolver;
 
     /**
      * @var MockObject&SurfaceSplitter
-     */
-    /**
-     * @var MockObject
      */
     private MockObject $surfaceSplitter;
 

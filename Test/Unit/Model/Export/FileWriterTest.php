@@ -24,9 +24,6 @@ class FileWriterTest extends TestCase
     /**
      * @var MockObject&WriteInterface
      */
-    /**
-     * @var MockObject
-     */
     private MockObject $directory;
 
     /**
